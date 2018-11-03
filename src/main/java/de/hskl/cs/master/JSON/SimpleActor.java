@@ -3,12 +3,22 @@ package de.hskl.cs.master.JSON;
 import java.util.LinkedList;
 import java.util.List;
 
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import com.google.gson.Gson;
+
 public class SimpleActor {
 	private String name;
 	private String gender;
 	private String homeworld;
 	private List<String> films;
 	private List<String> spaceships;
+	private static final Client client = ClientBuilder.newClient();
+	private static Gson gson = new Gson();
 	
 	public String getName() {
 		return name;
@@ -51,9 +61,23 @@ public class SimpleActor {
 	}
 
 	
+	 
+	
+	
 	/*Konstruktor
 	 * 
 	 * */
+	
+	SimpleActor getLuke(){
+	
+		String JsonActor = client.target("https://swapi.co/api/people/1")
+		.request(MediaType.APPLICATION_JSON)
+		.get(String.class);
+
+	return gson.fromJson(JsonActor, SimpleActor.class);
+	
+	}
+	
 	SimpleActor(String name, String gender, String homeworld){
 		this.name = name;
 		this.gender = gender;

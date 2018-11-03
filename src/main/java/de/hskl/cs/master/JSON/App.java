@@ -33,6 +33,9 @@ public class App
     	
     	SimpleActor sactor = gson.fromJson(gson.toJson(simpleluke), SimpleActor.class);  
     	
+    	SimpleActor zwei = new SimpleActor("","","");
+    	System.out.println("GetLuke: " + gson.toJson(zwei.getLuke()));
+    	
     	System.out.println("SimpleLuke:" + gson.toJson(simpleluke));
     	System.out.println("Simpleactor:" + gson.toJson(sactor));
 

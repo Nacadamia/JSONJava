@@ -14,14 +14,15 @@ public class App
     public static void main( String[] args )
     {
     
-    	Gson gson = 
-    		    new GsonBuilder()
-    		        .registerTypeAdapter(Actor.class, new PersonalDeserializer())
-    		        .setPrettyPrinting()
-    		        .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-    		        .create();
+    	int actor_id = 1;
+    	Actor opfer = new Actor();
+    	opfer.getActorFromApi(actor_id);
+    	opfer.toString();
+    	
+    	//System.out.println(gson.toJson(opfer));
     	
     	
+    	/**
     	SimpleActor simpleluke = new SimpleActor("Luke Skywalker", "male", "Tatooine"); 
     	simpleluke.addStarship("X-wing");
     	simpleluke.addStarship("Imperial shuttle"); 
@@ -59,7 +60,7 @@ public class App
     	//Actor actor = gson.fromJson("Actor from SimpleLuke" + gson.toJson(simpleluke), Actor.class);
     	
     	//System.out.println(gson.toJson(actor));
-    	
+    	**/
     }
 
 }

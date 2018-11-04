@@ -19,7 +19,7 @@ import com.google.gson.JsonParseException;
 
 public class PersonalDeserializer  implements JsonDeserializer<Actor> {
 	
-	private static final Client client = ClientBuilder.newClient();
+	
 		
 	@Override
 	public Actor deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
@@ -27,26 +27,25 @@ public class PersonalDeserializer  implements JsonDeserializer<Actor> {
 		
 		
 		 Actor actor = new Actor();
-		 JsonObject jsonObj = json.getAsJsonObject();
 		 GsonBuilder gsonBuilder = new GsonBuilder();
 		 Gson gson = gsonBuilder
 					.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
 					.create();
 		 
-		 
+		 JsonObject jsonObj = json.getAsJsonObject();
 		 String name = jsonObj.get("name").getAsString(); 
 		 String gender = jsonObj.get("gender").getAsString(); 
-		 Planet homeworld =  gson.fromJson(jsonObj.get("Homeworld"), Planet.class);
-		 
-		 actor.setName(name);
-		 actor.setGender(gender);
-		 actor.addPlanet(Planet.getPlanetFromApi(jsonObj.get("Homeworld").getAsString()));
-		 
+		//TODO WTF
+		 Planet homeworld =  gson.fromJson(jsonObj.get("homeworld"), Planet.class);
 		 JsonArray ships = jsonObj.getAsJsonArray("spaceships");
 		 JsonArray films = jsonObj.getAsJsonArray("films");
 		 JsonArray vehicles = jsonObj.getAsJsonArray("vehicles");
 		 JsonArray species = jsonObj.getAsJsonArray("species");
 		
+		 actor.setName(name);
+		 actor.setGender(gender);
+		 actor.setHomeplanet(homeworld);
+		 //actor.setHomeplanet(Planet.getPlanetFromApi(jsonObj.get("homeworld").getAsString()));
 		 
 			
 		 

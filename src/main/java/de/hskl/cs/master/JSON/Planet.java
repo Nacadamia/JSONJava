@@ -190,4 +190,12 @@ public void setUrl(String url) {
 	this.url = url;
 }
 
+@Override
+public String toString() {
+	return "Homeworld \n[name=" + name + ", rotationPeriod=" + rotationPeriod + ", orbitalPeriod=" + orbitalPeriod
+			+ ", diameter=" + diameter + ", climate=" + climate + ", gravity=" + gravity + ", terrain=" + terrain
+			+ ", surfaceWater=" + surfaceWater + ", population=" + population + ", residents=" + residents
+			+ ", films=" + films + ", created=" + created + ", edited=" + edited + ", url=" + url + "]";
+}
+
 }

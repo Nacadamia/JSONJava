@@ -98,5 +98,11 @@ public class Film {
 		
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Film \n[title=" + title + ", episodeId=" + episodeId + ", openingCrawl=" + openingCrawl + ", director="
+				+ director + ", producer=" + producer + ", releaseDate=" + releaseDate + ", characters=" + characters
+				+ ", planets=" + planets + ", starships=" + starships + ", vehicles=" + vehicles + ", species="
+				+ species + ", created=" + created + ", edited=" + edited + ", url=" + url + "]";
+	}
 }

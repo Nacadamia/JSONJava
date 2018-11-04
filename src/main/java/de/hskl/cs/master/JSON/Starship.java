@@ -233,4 +233,13 @@ public class Starship {
 			this.url = url;
 		}
 
+		@Override
+		public String toString() {
+			return "Starship \n[name=" + name + ", model=" + model + ", manufacturer=" + manufacturer + ", costInCredits="
+					+ costInCredits + ", length=" + length + ", maxAtmospheringSpeed=" + maxAtmospheringSpeed + ", crew="
+					+ crew + ", passengers=" + passengers + ", cargoCapacity=" + cargoCapacity + ", consumables="
+					+ consumables + ", hyperdriveRating=" + hyperdriveRating + ", mGLT=" + mGLT + ", starshipClass="
+					+ starshipClass + ", pilots=" + pilots + ", films=" + films + ", created=" + created + ", edited="
+					+ edited + ", url=" + url + "]";
+		}
 }

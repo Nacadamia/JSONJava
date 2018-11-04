@@ -37,10 +37,15 @@ public class PersonalDeserializer  implements JsonDeserializer<Actor> {
 		 String name = jsonObj.get("name").getAsString(); 
 		 String gender = jsonObj.get("gender").getAsString(); 
 		 Planet homeworld =  gson.fromJson(jsonObj.get("Homeworld"), Planet.class);
+		 
+		 actor.setName(name);
+		 actor.setGender(gender);
 		 actor.addPlanet(Planet.getPlanetFromApi(jsonObj.get("Homeworld").getAsString()));
 		 
 		 JsonArray ships = jsonObj.getAsJsonArray("spaceships");
 		 JsonArray films = jsonObj.getAsJsonArray("films");
+		 JsonArray vehicles = jsonObj.getAsJsonArray("vehicles");
+		 JsonArray species = jsonObj.getAsJsonArray("species");
 		
 		 
 			
@@ -51,12 +56,13 @@ public class PersonalDeserializer  implements JsonDeserializer<Actor> {
 		 }
 		 	actor.setFilms(f_list);
 		 
-		 	
-			
-		 	
+		 List<Starship> s_list = new ArrayList<Starship>();		
 		 for(JsonElement ship : ships) {
-			 actor.addStarship(gson.fromJson(ship, Starship.class));
+			 s_list.add(Starship.getStarshipFromApi(ship.getAsString()));
+			 
 		 }	
+		 actor.setStartships(s_list);
+		 
 		 return actor;
 	}
 

@@ -44,7 +44,7 @@ public class App
     	Actor luke = new Actor(); 
     	luke.setName("Luke Skywalker");
     	luke.setGender("male");
-    	luke.addPlanet(new Planet("Tatooine"));
+    	luke.addPlanet(new Planet());
     	luke.addStarship( new Starship("X-wing") );
     	luke.addStarship( new Starship("Imperial shuttle") ); 
     	luke.addFilm( new Film("A New Hope") ); 

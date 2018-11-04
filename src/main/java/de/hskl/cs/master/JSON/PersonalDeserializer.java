@@ -44,8 +44,8 @@ public class PersonalDeserializer  implements JsonDeserializer<Actor> {
 		
 		 actor.setName(name);
 		 actor.setGender(gender);
-		 actor.setHomeplanet(homeworld);
-		 //actor.setHomeplanet(Planet.getPlanetFromApi(jsonObj.get("homeworld").getAsString()));
+		// actor.setHomeplanet(Planet.getPlanetFromApi(homeworld.getAsString));
+		 actor.setHomeplanet(Planet.getPlanetFromApi(jsonObj.get("homeworld").getAsString()));
 		 
 			
 		 

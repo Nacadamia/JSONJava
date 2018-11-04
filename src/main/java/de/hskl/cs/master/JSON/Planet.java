@@ -75,6 +75,7 @@ public static Planet getPlanetFromApi(String url) {
 
 	String Planetson = client.target(url)
 			.request(MediaType.APPLICATION_JSON).get(String.class);
+	
 	return gson.fromJson(Planetson, Planet.class);
 }
 

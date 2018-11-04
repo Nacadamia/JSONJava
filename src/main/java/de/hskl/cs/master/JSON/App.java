@@ -15,9 +15,9 @@ public class App
     {
     
     	int actor_id = 1;
-    	Actor opfer = new Actor();
-    	opfer.getActorFromApi(actor_id);
-    	opfer.toString();
+    	
+    	Actor opfer = Actor.getActorFromApi(actor_id);
+    	System.out.println(opfer.toString());
     	
     	//System.out.println(gson.toJson(opfer));
     	

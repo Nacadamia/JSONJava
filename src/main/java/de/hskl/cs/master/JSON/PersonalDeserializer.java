@@ -17,7 +17,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
-public class PersonalDeserializer  implements JsonDeserializer<Actor> {
+public class PersonalDeserializer implements JsonDeserializer<Actor> {
 	
 	
 		
@@ -27,26 +27,32 @@ public class PersonalDeserializer  implements JsonDeserializer<Actor> {
 		
 		
 		 Actor actor = new Actor();
+		 JsonObject jsonObj = json.getAsJsonObject();
 		 GsonBuilder gsonBuilder = new GsonBuilder();
 		 Gson gson = gsonBuilder
 					.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
 					.create();
 		 
-		 JsonObject jsonObj = json.getAsJsonObject();
-		 String name = jsonObj.get("name").getAsString(); 
-		 String gender = jsonObj.get("gender").getAsString(); 
-		//TODO WTF
-		 Planet homeworld =  gson.fromJson(jsonObj.get("homeworld"), Planet.class);
-		 JsonArray ships = jsonObj.getAsJsonArray("spaceships");
+		
+		 JsonArray ships = jsonObj.getAsJsonArray("starships");
 		 JsonArray films = jsonObj.getAsJsonArray("films");
 		 JsonArray vehicles = jsonObj.getAsJsonArray("vehicles");
 		 JsonArray species = jsonObj.getAsJsonArray("species");
 		
-		 actor.setName(name);
-		 actor.setGender(gender);
-		// actor.setHomeplanet(Planet.getPlanetFromApi(homeworld.getAsString));
-		 actor.setHomeplanet(Planet.getPlanetFromApi(jsonObj.get("homeworld").getAsString()));
+		 actor.setName(jsonObj.get("name").getAsString());
+		 actor.setHeight(jsonObj.get("height").getAsString());
+		 actor.setMass(jsonObj.get("mass").getAsString());
+		 actor.setHairColor(jsonObj.get("hair_color").getAsString());
+		 actor.setSkinColor(jsonObj.get("skin_color").getAsString());
+		 actor.setEyeColor(jsonObj.get("eye_color").getAsString());
+		 actor.setBirthYear(jsonObj.get("birth_year").getAsString());
+		 actor.setUrl(jsonObj.get("url").getAsString());
+		 actor.setGender(jsonObj.get("gender").getAsString());
+		 actor.setCreated(jsonObj.get("created").getAsString());
+		 actor.setEdited(jsonObj.get("edited").getAsString());
 		 
+		 actor.setHomeworld(Planet.getPlanetFromApi(jsonObj.get("homeworld").getAsString()));
+				 
 			
 		 
 		 List<Film> f_list = new ArrayList<Film>();
@@ -60,7 +66,7 @@ public class PersonalDeserializer  implements JsonDeserializer<Actor> {
 			 s_list.add(Starship.getStarshipFromApi(ship.getAsString()));
 			 
 		 }	
-		 actor.setStartships(s_list);
+		 actor.setStarships(s_list);
 		 
 		 List<Vehicle> v_list = new ArrayList<Vehicle>();		
 		 for(JsonElement vehicle : vehicles) {

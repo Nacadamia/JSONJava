@@ -15,12 +15,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Actor {
 
-
-Planet homeplanet ;
-
-List<Starship> startships;
-
-
 @SerializedName("name")
 @Expose
 private String name;
@@ -73,13 +67,9 @@ private String url;
 
 private static final Client client = ClientBuilder.newClient();
 
-public Actor() {
-	super();
-	this.films = new LinkedList<Film>();
-	this.startships = new LinkedList<Starship>();
-}
 
 public static Actor getActorFromApi(int id) {
+	
 	GsonBuilder gsonBuilder = new GsonBuilder();
 	Gson gson = gsonBuilder
 			.registerTypeAdapter(Actor.class, new PersonalDeserializer())
@@ -97,12 +87,63 @@ public static Actor getActorFromApi(int id) {
 	return gson.fromJson(jsonActor, Actor.class);
 }
 
+
+
+
 public String getName() {
 	return name;
 }
 
 public void setName(String name) {
 	this.name = name;
+}
+
+public String getHeight() {
+	return height;
+}
+
+public void setHeight(String height) {
+	this.height = height;
+}
+
+public String getMass() {
+	return mass;
+}
+
+public void setMass(String mass) {
+	this.mass = mass;
+}
+
+public String getHairColor() {
+	return hairColor;
+}
+
+public void setHairColor(String hairColor) {
+	this.hairColor = hairColor;
+}
+
+public String getSkinColor() {
+	return skinColor;
+}
+
+public void setSkinColor(String skinColor) {
+	this.skinColor = skinColor;
+}
+
+public String getEyeColor() {
+	return eyeColor;
+}
+
+public void setEyeColor(String eyeColor) {
+	this.eyeColor = eyeColor;
+}
+
+public String getBirthYear() {
+	return birthYear;
+}
+
+public void setBirthYear(String birthYear) {
+	this.birthYear = birthYear;
 }
 
 public String getGender() {
@@ -113,32 +154,12 @@ public void setGender(String gender) {
 	this.gender = gender;
 }
 
-public Planet getHomeplanet() {
-	return homeplanet;
+public Planet getHomeworld() {
+	return homeworld;
 }
 
-public void setHomeplanet(Planet homeplanet) {
-	this.homeplanet = homeplanet;
-}
-
-public void addStarship(Starship ship) {
-	startships.add(ship);
-}	
-
-public void addFilm(Film film) {
-	films.add(film);
-}
-
-public void addPlanet(Planet planet) {
-	this.homeplanet = planet;
-}
-
-public List<Starship> getStartships() {
-	return startships;
-}
-
-public void setStartships(List<Starship> startships) {
-	this.startships = startships;
+public void setHomeworld(Planet homeworld) {
+	this.homeworld = homeworld;
 }
 
 public List<Film> getFilms() {
@@ -147,8 +168,8 @@ public List<Film> getFilms() {
 
 public void setFilms(List<Film> films) {
 	this.films = films;
-	
 }
+
 public List<Species> getSpecies() {
 	return species;
 }
@@ -165,6 +186,37 @@ public void setVehicles(List<Vehicle> vehicles) {
 	this.vehicles = vehicles;
 }
 
+public List<Starship> getStarships() {
+	return starships;
+}
+
+public void setStarships(List<Starship> starships) {
+	this.starships = starships;
+}
+
+public String getCreated() {
+	return created;
+}
+
+public void setCreated(String created) {
+	this.created = created;
+}
+
+public String getEdited() {
+	return edited;
+}
+
+public void setEdited(String edited) {
+	this.edited = edited;
+}
+
+public String getUrl() {
+	return url;
+}
+
+public void setUrl(String url) {
+	this.url = url;
+}
 
 @Override
 public String toString() {

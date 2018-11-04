@@ -9,7 +9,9 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class SimpleActor {
 	private String name;
@@ -78,6 +80,24 @@ public class SimpleActor {
 	
 	}
 	
+	
+	SimpleActor getPeople() 
+	{
+		Gson gson = 
+    		    new GsonBuilder()
+    		    	.registerTypeAdapter(SimpleActor.class, new ninedeserializer())
+    		        .setPrettyPrinting()
+    		        .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+    		        .serializeNulls()
+    		        .create();
+		
+		String JsonActor = client.target("https://swapi.co/api/people/")
+				.request(MediaType.APPLICATION_JSON)
+				.get(String.class);
+
+			return gson.fromJson(JsonActor, SimpleActor.class);
+	}
+	
 	SimpleActor(String name, String gender, String homeworld){
 		this.name = name;
 		this.gender = gender;
@@ -92,6 +112,13 @@ public class SimpleActor {
 	
 	void addFilm(String film) {
 		films.add(film);
+	}
+	
+	@Override
+	public String toString() {
+		return "Name: " + "\n"+  name + " \nShips: " + spaceships.toString() + "\n" + "Films: " + 
+	films.toString();
+		
 	}
 	
 	

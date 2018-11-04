@@ -222,7 +222,7 @@ public void setUrl(String url) {
 public String toString() {
 	return "Actor \n[name=" + name + ", height=" + height + ", mass=" + mass + ", hairColor=" + hairColor
 			+ ", skinColor=" + skinColor + ", eyeColor=" + eyeColor + ", birthYear=" + birthYear + ", gender="
-			+ gender + ", homeworld=" + homeworld.toString() + ", films=" + films + ", species=" + species + ", vehicles="
+			+ gender + ", homeworld= \n " + homeworld.toString() + ", films=" + films + ", species=" + species + ", vehicles="
 			+ vehicles + ", starships=" + starships + ", created=" + created + ", edited=" + edited + ", url=" + url
 			+ "]";
 }

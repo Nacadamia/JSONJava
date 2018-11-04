@@ -1,5 +1,6 @@
 package de.hskl.cs.master.JSON;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -12,12 +13,12 @@ public class App
 {
     public static void main( String[] args )
     {
-    	//Gson gson = new Gson();
+    
     	Gson gson = 
     		    new GsonBuilder()
     		        .registerTypeAdapter(Actor.class, new PersonalDeserializer())
-    		        //.registerTypeAdapter(DiffContent.class, new MyDeserializer<DiffContent>())
     		        .setPrettyPrinting()
+    		        .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
     		        .create();
     	
     	
@@ -40,7 +41,10 @@ public class App
     	System.out.println("Simpleactor:" + gson.toJson(sactor));
 
     
-    	Actor luke = new Actor("Luke Skywalker", "male", new Planet("Tatooine")); 
+    	Actor luke = new Actor(); 
+    	luke.setName("Luke Skywalker");
+    	luke.setGender("male");
+    	luke.addPlanet(new Planet("Tatooine"));
     	luke.addStarship( new Starship("X-wing") );
     	luke.addStarship( new Starship("Imperial shuttle") ); 
     	luke.addFilm( new Film("A New Hope") ); 
@@ -52,9 +56,10 @@ public class App
     	
     	System.out.println("Actor" + gson.toJson(luke));
     	
-    	Actor actor = gson.fromJson("Actor from SimpleLuke" + gson.toJson(simpleluke), Actor.class);
+    	//Actor actor = gson.fromJson("Actor from SimpleLuke" + gson.toJson(simpleluke), Actor.class);
     	
-    	System.out.println(gson.toJson(actor));
+    	//System.out.println(gson.toJson(actor));
+    	
     }
 
 }

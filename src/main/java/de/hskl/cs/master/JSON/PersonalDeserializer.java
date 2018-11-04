@@ -1,6 +1,11 @@
 package de.hskl.cs.master.JSON;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -13,13 +18,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
 public class PersonalDeserializer  implements JsonDeserializer<Actor> {
-	 
+	
+	private static final Client client = ClientBuilder.newClient();
 		
 	@Override
 	public Actor deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
 			throws JsonParseException {
 		
 		
+		 Actor actor = new Actor();
 		 JsonObject jsonObj = json.getAsJsonObject();
 		 GsonBuilder gsonBuilder = new GsonBuilder();
 		 Gson gson = gsonBuilder
@@ -30,16 +37,23 @@ public class PersonalDeserializer  implements JsonDeserializer<Actor> {
 		 String name = jsonObj.get("name").getAsString(); 
 		 String gender = jsonObj.get("gender").getAsString(); 
 		 Planet homeworld =  gson.fromJson(jsonObj.get("Homeworld"), Planet.class);
+		 actor.addPlanet(Planet.getPlanetFromApi(jsonObj.get("Homeworld").getAsString()));
 		 
 		 JsonArray ships = jsonObj.getAsJsonArray("spaceships");
 		 JsonArray films = jsonObj.getAsJsonArray("films");
 		
-		 Actor actor = new Actor(name, gender, homeworld);
-			
-		 for(JsonElement film : films) {
-			 actor.addFilm(gson.fromJson(film, Film.class));
-		 }
 		 
+			
+		 
+		 List<Film> f_list = new ArrayList<Film>();
+		 for(JsonElement film : films) {
+			 f_list.add(Film.getFilmFromApi(film.getAsString()));
+		 }
+		 	actor.setFilms(f_list);
+		 
+		 	
+			
+		 	
 		 for(JsonElement ship : ships) {
 			 actor.addStarship(gson.fromJson(ship, Starship.class));
 		 }	

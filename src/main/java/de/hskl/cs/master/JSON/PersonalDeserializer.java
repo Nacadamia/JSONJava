@@ -63,6 +63,20 @@ public class PersonalDeserializer  implements JsonDeserializer<Actor> {
 		 }	
 		 actor.setStartships(s_list);
 		 
+		 List<Vehicle> v_list = new ArrayList<Vehicle>();		
+		 for(JsonElement vehicle : vehicles) {
+			 v_list.add(Vehicle.getVehicleFromApi(vehicle.getAsString()));
+			 
+		 }	
+		 actor.setVehicles(v_list);
+		 
+		 List<Species> sp_list = new ArrayList<Species>();		
+		 for(JsonElement specie : species) {
+			 sp_list.add(Species.getSpeciesFromApi(specie.getAsString()));
+	
+		 }	
+		 actor.setSpecies(sp_list);
+		 
 		 return actor;
 	}
 

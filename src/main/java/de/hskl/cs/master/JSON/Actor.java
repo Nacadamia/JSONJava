@@ -9,6 +9,8 @@ String name, gender;
 Planet homeplanet ;
 List<Film> films;
 List<Starship> startships;
+List<Species> species;
+List<Vehicle> vehicles;
 
 
 public Actor() {
@@ -69,5 +71,21 @@ public void setFilms(List<Film> films) {
 	this.films = films;
 	
 }
+public List<Species> getSpecies() {
+	return species;
+}
+
+public void setSpecies(List<Species> species) {
+	this.species = species;
+}
+
+public List<Vehicle> getVehicles() {
+	return vehicles;
+}
+
+public void setVehicles(List<Vehicle> vehicles) {
+	this.vehicles = vehicles;
+}
+
 
 }

@@ -85,7 +85,7 @@ public class SimpleActor {
 	{
 		Gson gson = 
     		    new GsonBuilder()
-    		    	.registerTypeAdapter(SimpleActor.class, new ninedeserializer())
+    		    	.registerTypeAdapter(SimpleActor.class, new PersonalSerializer())
     		        .setPrettyPrinting()
     		        .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
     		        .serializeNulls()
